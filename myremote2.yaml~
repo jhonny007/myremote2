@@ -1,0 +1,28 @@
+apiVersion: gitkube.sh/v1alpha1
+kind: Remote
+metadata:
+  creationTimestamp: null
+  name: myremote2
+  namespace: default
+spec:
+  authorizedKeys:
+  - |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCksUWSuklSb+9Ia+IetSDrP5OcclNvzMbz3R73EeGVvFgTV2XQFC5Gk5JYH6LtlO3MsBFuF7akeE9Q/qYIJQ7U36DOSv4qccbl1kzrEE81dccYrllUm7mxTx0jet7RO5cuaf84GXnBL/vr9zjs/BujybP3ePjvEcDcpGzhcxZUY1R/xSqwWx3sE67Hfz57EdT+Jv8JHkvWInNqHMzMziV8M7Q53gyXKyRbzNnNjzzkIsDS4uXsLltvcMNlR/Iga/cVkPS/Rkz68YNWjjOvEqoULizOd2JSrKsZfSKi8cWzwKA/aMbjbQ88HUZaGnOG029hx89SjkG2TUeKyQ7m+M/B admin@vps726182
+  deployments:
+  - containers:
+    - dockerfile: microservices/nginx/Dockerfile
+      name: www
+      path: microservices/nginx
+    name: www
+  manifests:
+    helm: {}
+    path: manifests
+  registry:
+    credentials:
+      secretKeyRef:
+        key: ""
+      secretRef: myremote2-regsecret
+    url: docker.io/javadent
+status:
+  remoteUrl: ""
+  remoteUrlDesc: ""
